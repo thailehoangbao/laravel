@@ -1,3 +1,90 @@
+-- -- Tạo bảng user
+-- CREATE TABLE user (
+--     user_id INT AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL,
+--     email VARCHAR(255) NOT NULL,
+--     phone VARCHAR(20),
+--     password VARCHAR(255) NOT NULL,
+--     avatar VARCHAR(255)
+-- );
+
+-- -- Tạo bảng product_type
+-- CREATE TABLE product_type (
+--     type_id INT AUTO_INCREMENT PRIMARY KEY,
+--     type_name VARCHAR(255) NOT NULL
+-- );
+
+-- -- Tạo bảng product
+-- CREATE TABLE product (
+--     product_id INT AUTO_INCREMENT PRIMARY KEY,
+--     product_name VARCHAR(255) NOT NULL,
+--     image VARCHAR(255),
+--     price FLOAT NOT NULL,
+--     discount FLOAT,
+--     desc_product VARCHAR(2000),
+--     type_id INT,
+--     FOREIGN KEY (type_id) REFERENCES product_type(type_id)
+-- );
+
+-- -- Tạo bảng order
+-- CREATE TABLE `order` (
+--     order_id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT,
+--     product_id INT,
+--     desc_order VARCHAR(2000),
+--     amount INT NOT NULL,
+--     FOREIGN KEY (user_id) REFERENCES user(user_id),
+--     FOREIGN KEY (product_id) REFERENCES product(product_id)
+-- );
+
+-- -- Tạo bảng comment_product
+-- CREATE TABLE comment_product (
+--     comment_pro_id INT AUTO_INCREMENT PRIMARY KEY,
+--     product_id INT,
+--     user_id INT,
+--     desc_comment VARCHAR(2000),
+--     FOREIGN KEY (product_id) REFERENCES product(product_id),
+--     FOREIGN KEY (user_id) REFERENCES user(user_id)
+-- );
+
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    body VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+
+drop table foods
+
+CREATE TABLE foods (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    count INTEGER(11) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    image_path VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    category_id INT,
+    CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+ALTER TABLE foods
+ADD COLUMN category_id INT,
+ADD CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES categories(id);
+
+ALTER TABLE foods
+ADD COLUMN image_path VARCHAR(255);
+
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) not null,
+    description VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
